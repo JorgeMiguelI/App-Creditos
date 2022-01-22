@@ -1,0 +1,66 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h1 class="text-center"><b>Mis Clientes</b></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <mat-form-field appearance="standard">
+                <mat-label>Filtro</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="nombre" #input>
+            </mat-form-field>
+        </div>
+        <div class="col-md-8 add">
+            <div class="example-button-row">
+                <button mat-raised-button color="primary" (click)= "AddUser()">Registrar Cliente</button>
+            </div>
+        </div>
+        
+        <div class="col-md-12">
+            <table mat-table [dataSource]="ListaClientes" class="mat-elevation-z8">
+              
+                <!-- Columna ID -->
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef> ID </th>
+                  <td mat-cell *matCellDef="let element"> {{element.idusuario}} </td>
+                </ng-container>
+              
+                <!-- Columna Nombre -->
+                <ng-container matColumnDef="nombre">
+                  <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                  <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                </ng-container>
+              
+                <!-- Columna Direccion -->
+                <ng-container matColumnDef="direccion">
+                  <th mat-header-cell *matHeaderCellDef> Dirección </th>
+                  <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
+                </ng-container>
+              
+                <!-- Columna Edad -->
+                <ng-container matColumnDef="edad">
+                  <th mat-header-cell *matHeaderCellDef> Edad </th>
+                  <td mat-cell *matCellDef="let element"> {{element.edad}} </td>
+                </ng-container>
+
+                <!-- Columna Genero -->
+                <ng-container matColumnDef="genero">
+                    <th mat-header-cell *matHeaderCellDef> Genero </th>
+                    <td mat-cell *matCellDef="let element"> {{element.genero}} </td>
+                </ng-container>
+
+                <!-- Columna Genero -->
+                <ng-container matColumnDef="cuenta">
+                  <th mat-header-cell *matHeaderCellDef> Cuenta </th>
+                  <td mat-cell *matCellDef="let element"> <button mat-raised-button color="warn" (click)= "VerCuentas(element.idusuario)" *ngIf = "VerificaExistenciaCuentas(element.idusuario)">Administrar Cuentas</button>  </td>
+              </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+
+        </div>
+    </div>
+</div>

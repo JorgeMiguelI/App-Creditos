@@ -1,0 +1,40 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h1 class="text-center"> <b>Apertura de Cuenta de Ahorro</b> </h1>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-auto mt-4 form-content">
+
+            
+
+            <form>
+                <div class="form-group">
+                    <label for="direccion"><span [ngClass]= "{'incompleto': noCuenta =='' || noCuenta == undefined, 'completo': noCuenta != ''}">*</span> No. Cuenta</label>
+                    <input type="text" class="form-control" id="noCuenta" name="noCuenta" placeholder="No. Cuenta" [(ngModel)] = "noCuenta">
+                </div>
+                <div class="form-group">
+                    <label for="edad"><span [ngClass]= "{'incompleto': saldoCuenta == undefined, 'completo': saldoCuenta != undefined}">*</span> Saldo</label>
+                    <input type="number" class="form-control" id="saldo" name="saldo" placeholder="Saldo inicial" [(ngModel)] = "saldoCuenta">
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre"><span [ngClass]= "{'incompleto': cliente =='' || cliente == undefined, 'completo': cliente != ''}">*</span> Cliente</label>
+                    <input type="text" placeholder="Nombre del cliente" [formControl]="control" [matAutocomplete]="auto" class="form-control" [(ngModel)] = "cliente" >
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let cliente of filteredClientes | async" [value]="cliente.nombre">
+                            {{cliente.nombre}}
+                        </mat-option>
+                </mat-autocomplete>
+                </div>
+               
+                <button type="submit" class="btn btn-primary" (click)="RegistrarCuenta()" >Registrar Cuenta</button>
+                </form>
+            
+        </div>
+    </div>
+
+</div>

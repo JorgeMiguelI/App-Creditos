@@ -1,0 +1,40 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h1 class="text-center"> <b>Alta de Clientes</b> </h1>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-auto mt-4 form-content">
+            
+            <form [formGroup] = "formularioAltas">
+                <div class="form-group">
+                    <label for="nombre"><span [ngClass]= "{'incompleto': formularioAltas.controls['nombre'].valid, 'completo': formularioAltas.controls['nombre'].invalid}">*</span> Nombre Completo</label>
+                    <input type="email" class="form-control" id="nombre" name="nombre" aria-describedby="emailHelp" placeholder="Ingrese su nombre" formControlName="nombre">
+                </div>
+                <div class="form-group">
+                    <label for="direccion"><span [ngClass]= "{'incompleto': formularioAltas.controls['direccion'].valid, 'completo': formularioAltas.controls['direccion'].invalid}">*</span> Dirección</label>
+                    <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección" formControlName="direccion">
+                </div>
+                <div class="form-group">
+                    <label for="edad"><span [ngClass]= "{'incompleto': formularioAltas.controls['edad'].valid, 'completo': formularioAltas.controls['edad'].invalid}">*</span> Edad</label>
+                    <input type="number" class="form-control" id="edad" name="edad" placeholder="Edad" formControlName="edad">
+                </div>
+                <div class="form-group">
+                    <label for="genero"><span [ngClass]= "{'incompleto': formularioAltas.controls['genero'].valid, 'completo': formularioAltas.controls['genero'].invalid}">*</span> Género</label>
+                    <select id="genero" name="genero" class="form-control" formControlName="genero">
+                        <option selected value="">Choose...</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                      </select>
+                </div>
+               
+                <button type="submit" class="btn btn-primary" (click)="Registrar()" [disabled]= "!formularioAltas.valid">Registrar Cliente</button>
+                </form>
+            
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,25 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h1 class="text-center"><b>Mis Cuentas de Ahorro</b></h1>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-4 cuentas" *ngFor="let cuenta of ListaMisCuentas">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="https://www.tudecide.com/assets/images/svg/verticals/cuentas-de-ahorro-bancarias.svg" alt="Card image cap">
+                <div class="card-body">
+                  <h3 class="card-title">Cuenta: <b>{{cuenta.numeroCuenta}}</b></h3>
+                  <p class="card-text">Saldo Actual: <b>${{cuenta.saldo}}</b> </p>
+                  <p class="card-text">Ultima Actualización: <b>{{cuenta.fechaUltimaAct}}</b> </p>
+                  <button type="button" class="btn btn-outline-primary mr-2" (click)= "Depositar(cuenta)">Depositar</button>
+                  <button type="button" href="#" class="btn btn-outline-danger mr-2" (click)="Retirar(cuenta)">Retirar</button>
+                  <button href="#" class="btn btn-outline-success mt-3" (click)= "verMovimientos(cuenta.numeroCuenta)">Ver Movimientos</button>
+                </div>
+              </div>
+        </div>
+        
+    </div>
+</div>

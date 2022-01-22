@@ -1,0 +1,25 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h1 class="text-center"> <b>Retire de su Cuenta de ahorro</b></h1>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-auto mt-4 form-content">
+            <form [formGroup] = "formularioRetiro">
+                <p class="text-center"> <b>Cuenta: {{noCuenta}}</b></p>
+                <p class="text-center"> <b>Saldo Actual: ${{Cuenta.saldo}}</b></p>
+                <div class="form-group">
+                    <label for="retiro"><span [ngClass]= "{'incompleto': formularioRetiro.controls['retiro'].valid, 'completo': formularioRetiro.controls['retiro'].invalid}">*</span> Cantidad a retirar</label>
+                    <input type="number" class="form-control" id="retiro" name="retiro" aria-describedby="retiro" placeholder="Cantidad a retirar" formControlName="retiro" (ngModelChange)="ValidaCant()">
+                    <small id="warning-retiro" class="form-text text-muted" *ngIf = "!cantidadValida">La cantidad que esta intentando retirar es mayor a su saldo actual</small>
+                </div>
+            
+                <button type="submit" class="btn btn-primary" (click)="Retirar()" [disabled]= "!formularioRetiro.valid || !cantidadValida">Realizar Retiro</button>
+                <button type="submit" class="btn btn-danger ml-4" (click)="Cancelar()">Cancelar</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h1 class="text-center"> <b>Deposite a su cuenta de Ahorro</b></h1>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-auto mt-4 form-content">
+            <form [formGroup] = "formularioDeposito">
+                <p class="text-center"> <b>Cuenta: {{noCuenta}}</b></p>
+                <p class="text-center"> <b>Saldo Actual: ${{Cuenta.saldo}}</b></p>
+                <div class="form-group">
+                    <label for="nombre"><span [ngClass]= "{'incompleto': formularioDeposito.controls['deposito'].valid, 'completo': formularioDeposito.controls['deposito'].invalid}">*</span> Cantidad a depositar</label>
+                    <input type="number" class="form-control" id="deposito" name="deposito" aria-describedby="deposito" placeholder="Cantidad a depositar" formControlName="deposito">
+                </div>
+            
+                <button type="submit" class="btn btn-primary" (click)="Depositar()" [disabled]= "!formularioDeposito.valid">Realizar Deposito</button>
+                <button type="submit" class="btn btn-danger ml-4" (click)="Cancelar()">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+</div>

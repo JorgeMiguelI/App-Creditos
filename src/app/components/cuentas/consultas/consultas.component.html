@@ -1,0 +1,36 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <h1 class="text-center"> <b>Mis Movimientos</b></h1>
+            <h3 class="text-center">Número de Cuenta: <b>{{noCuenta}}</b></h3>
+        </div>
+    </div>
+    <div class="row justify-content-center" *ngIf = "hayMovimientos">
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="text" class="form-control" id="fecha" aria-describedby="Feha" placeholder="Filtrar por fecha" [(ngModel)]= "fechaMovimiento">
+            </div>
+        </div>
+    </div>
+    
+    <div class="movimientos" *ngIf = "hayMovimientos">
+        <div class="row justify-content-center mb-3" *ngFor = "let movimiento of ListadoMovimientos | filterMov: fechaMovimiento">
+            <mat-card class="example-card">
+                <mat-card-title>{{movimiento.tipo}}</mat-card-title>
+                <mat-card-subtitle>{{movimiento.fechaUltimaAct}}</mat-card-subtitle>
+                <mat-card-content>
+                <p>Operación realizada con <b>${{movimiento.monto}}</b></p>
+                </mat-card-content>
+                
+            </mat-card>
+        </div>
+    </div>
+
+    <div class="row mt-5" *ngIf = "!hayMovimientos && hayMovimientos != undefined">
+        <div class="col-md-12">
+            <h1 class="nomovimientos text-center">No hay ningun movimiento registrado en esta cuenta por ahora</h1>
+        </div>
+    </div>
+
+</div>
